@@ -45,6 +45,361 @@ const TRUC_LIST = [
   { name: 'Bế', type: 'hacDao', meaning: 'Xấu, chỉ tốt cho đắp đê, lấp hố', score: 35 }
 ];
 
+// Bản dịch Festival từ tiếng Trung sang tiếng Việt
+const FESTIVAL_TRANSLATIONS = {
+  // Dương lịch
+  '元旦节': 'Tết Dương Lịch',
+  '元旦': 'Tết Dương Lịch',
+  '情人节': 'Lễ Tình Nhân',
+  '妇女节': 'Quốc tế Phụ nữ',
+  '国际妇女节': 'Quốc tế Phụ nữ',
+  '植树节': 'Ngày Trồng cây',
+  '愚人节': 'Ngày Cá tháng Tư',
+  '劳动节': 'Quốc tế Lao động',
+  '国际劳动节': 'Quốc tế Lao động',
+  '青年节': 'Ngày Thanh niên',
+  '儿童节': 'Quốc tế Thiếu nhi',
+  '国际儿童节': 'Quốc tế Thiếu nhi',
+  '教师节': 'Ngày Nhà giáo',
+  '国庆节': 'Quốc khánh',
+  '圣诞节': 'Lễ Giáng sinh',
+  '平安夜': 'Đêm Giáng sinh',
+  '母亲节': 'Ngày của Mẹ',
+  '父亲节': 'Ngày của Cha',
+
+  // Âm lịch
+  '春节': 'Tết Nguyên Đán',
+  '除夕': 'Đêm Giao thừa',
+  '元宵节': 'Tết Nguyên Tiêu (Rằm tháng Giêng)',
+  '龙抬头': 'Lễ Long Đề Đầu',
+  '清明节': 'Tết Thanh Minh',
+  '端午节': 'Tết Đoan Ngọ',
+  '七夕节': 'Lễ Thất Tịch (Ngưu Lang - Chức Nữ)',
+  '中元节': 'Lễ Vu Lan (Rằm tháng Bảy)',
+  '中秋节': 'Tết Trung Thu',
+  '重阳节': 'Tết Trùng Cửu',
+  '寒衣节': 'Tết Hàn Y',
+  '下元节': 'Tết Hạ Nguyên',
+  '腊八节': 'Lễ Lạp Bát',
+  '小年': 'Tết Ông Công Ông Táo',
+  '祭灶节': 'Tết Ông Công Ông Táo',
+
+  // Các ngày đặc biệt khác
+  '驱傩日': 'Ngày Trừ Tà',
+  '人日': 'Tết Nhân Nhật (Mùng 7)',
+  '天公生': 'Vía Ngọc Hoàng',
+  '观音诞': 'Vía Quan Âm',
+  '佛诞': 'Lễ Phật Đản',
+  '佛诞节': 'Lễ Phật Đản',
+  '盂兰盆节': 'Lễ Vu Lan',
+  '财神节': 'Ngày Vía Thần Tài',
+  '龙母诞': 'Vía Long Mẫu',
+  '关帝诞': 'Vía Quan Công',
+  '天后诞': 'Vía Thiên Hậu',
+
+  // Tiết khí
+  '立春': 'Lập Xuân',
+  '雨水': 'Vũ Thủy',
+  '惊蛰': 'Kinh Trập',
+  '春分': 'Xuân Phân',
+  '清明': 'Thanh Minh',
+  '谷雨': 'Cốc Vũ',
+  '立夏': 'Lập Hạ',
+  '小满': 'Tiểu Mãn',
+  '芒种': 'Mang Chủng',
+  '夏至': 'Hạ Chí',
+  '小暑': 'Tiểu Thử',
+  '大暑': 'Đại Thử',
+  '立秋': 'Lập Thu',
+  '处暑': 'Xử Thử',
+  '白露': 'Bạch Lộ',
+  '秋分': 'Thu Phân',
+  '寒露': 'Hàn Lộ',
+  '霜降': 'Sương Giáng',
+  '立冬': 'Lập Đông',
+  '小雪': 'Tiểu Tuyết',
+  '大雪': 'Đại Tuyết',
+  '冬至': 'Đông Chí',
+  '小寒': 'Tiểu Hàn',
+  '大寒': 'Đại Hàn',
+
+  // Các ngày lễ khác
+  '填仓节': 'Ngày Điền Thương',
+  '社日节': 'Tết Xã Nhật',
+  '花朝节': 'Tết Hoa Triêu',
+  '上巳节': 'Tết Thượng Tỵ',
+  '寒食节': 'Tết Hàn Thực',
+  '浴佛节': 'Lễ Tắm Phật',
+  '碧霞元君诞': 'Vía Bích Hà Nguyên Quân',
+  '药王诞': 'Vía Dược Vương',
+  '火把节': 'Lễ Đuốc Lửa',
+  '姑姑节': 'Ngày Cô',
+  '天医节': 'Ngày Thiên Y',
+  '天贶节': 'Ngày Thiên Huống',
+  '翻经节': 'Ngày Phiên Kinh',
+  '地藏节': 'Vía Địa Tạng',
+  '祭祖节': 'Ngày Tế Tổ',
+  '北帝诞': 'Vía Bắc Đế',
+};
+
+// Bản dịch hoạt động (宜/忌 - Nên/Kiêng)
+const ACTIVITY_TRANSLATIONS = {
+  // Các hoạt động phổ biến
+  '嫁娶': 'Cưới hỏi',
+  '结婚': 'Kết hôn',
+  '订婚': 'Đính hôn',
+  '订盟': 'Giao ước',
+  '纳采': 'Nạp thái (xin cưới)',
+  '问名': 'Hỏi tên',
+  '纳吉': 'Nạp cát',
+  '纳征': 'Nạp trưng',
+  '请期': 'Xin ngày cưới',
+  '亲迎': 'Đón dâu',
+
+  '祭祀': 'Cúng tế',
+  '祈福': 'Cầu phúc',
+  '求嗣': 'Cầu tự',
+  '开光': 'Khai quang',
+  '塑绘': 'Tạc tượng',
+  '斋醮': 'Trai đàn',
+  '酬神': 'Tạ thần',
+  '许愿': 'Hứa nguyện',
+
+  '出行': 'Xuất hành',
+  '入宅': 'Nhập trạch',
+  '移徙': 'Dời nhà',
+  '安床': 'An giường',
+  '安香': 'An hương',
+  '安门': 'An cửa',
+  '修造': 'Sửa chữa',
+  '动土': 'Động thổ',
+  '起基': 'Đặt móng',
+  '竖柱': 'Dựng cột',
+  '上梁': 'Thượng lương',
+  '盖屋': 'Lợp nhà',
+  '作灶': 'Đặt bếp',
+  '拆卸': 'Tháo dỡ',
+  '破土': 'Phá thổ',
+  '启钻': 'Khởi toán',
+  '安葬': 'An táng',
+  '入殓': 'Liệm',
+  '移柩': 'Di quan',
+  '除服': 'Trừ phục',
+  '成服': 'Thành phục',
+  '谢土': 'Tạ thổ',
+
+  '开业': 'Khai trương',
+  '开市': 'Mở cửa hàng',
+  '开张': 'Khai trương',
+  '挂匾': 'Treo biển',
+  '立券': 'Lập khế',
+  '交易': 'Giao dịch',
+  '纳财': 'Thu tiền',
+  '纳畜': 'Nuôi gia súc',
+  '牧养': 'Chăn nuôi',
+  '造畜稠': 'Làm chuồng',
+
+  '栽种': 'Trồng trọt',
+  '种植': 'Trồng cây',
+  '破屋': 'Phá nhà',
+  '坏垣': 'Phá tường',
+  '补垣': 'Đắp tường',
+  '填塘': 'Lấp ao',
+  '平治道涂': 'San đường',
+  '伐木': 'Chặt gỗ',
+  '作梁': 'Làm đòn',
+
+  '纳婿': 'Nhận rể',
+  '冠笄': 'Đội mũ',
+  '进人口': 'Nhận người',
+  '裁衣': 'Cắt áo',
+  '合帐': 'Hợp màn',
+  '结网': 'Đan lưới',
+  '安机': 'An máy',
+  '经络': 'Dệt cửi',
+  '酝酿': 'Ủ rượu',
+  '造酒': 'Nấu rượu',
+  '造车器': 'Làm xe',
+  '雕刻': 'Điêu khắc',
+  '造船': 'Đóng thuyền',
+
+  '理发': 'Cắt tóc',
+  '整手足甲': 'Cắt móng',
+  '冠带': 'Đội mũ',
+  '沐浴': 'Tắm gội',
+
+  '解除': 'Giải trừ',
+  '求医': 'Cầu y',
+  '治病': 'Chữa bệnh',
+  '针灸': 'Châm cứu',
+  '服药': 'Uống thuốc',
+
+  '捕捉': 'Bắt',
+  '畋猎': 'Săn bắn',
+  '取渔': 'Đánh cá',
+  '掘井': 'Đào giếng',
+  '穿井': 'Khoan giếng',
+  '开渠': 'Đào mương',
+  '开池': 'Đào ao',
+  '作陂': 'Đắp đê',
+  '放水': 'Xả nước',
+
+  '修饰垣墙': 'Sửa tường',
+  '平治道途': 'San đường',
+  '修仓': 'Sửa kho',
+  '开仓': 'Mở kho',
+  '入学': 'Nhập học',
+  '习艺': 'Học nghề',
+
+  '会亲友': 'Gặp bạn bè',
+  '会友': 'Gặp bạn',
+  '出火': 'Xuất hỏa',
+  '安碓硙': 'Đặt cối',
+
+  '余事勿取': 'Không nên làm việc khác',
+  '诸事不宜': 'Mọi việc không nên',
+  '无': 'Không có',
+  '日值受死': 'Ngày Thọ Tử',
+  '大事不宜': 'Không nên việc lớn',
+
+  '开仓库': 'Mở kho',
+  '出货财': 'Xuất hàng',
+  '嫁娶结婚': 'Cưới hỏi',
+  '祈福求嗣': 'Cầu phúc cầu tự',
+  '动土修造': 'Động thổ sửa chữa',
+  '安葬入殓': 'An táng liệm',
+  '移徙入宅': 'Dời nhà nhập trạch',
+  '开业开市': 'Khai trương',
+  '交易立券': 'Giao dịch lập khế',
+  '栽种牧养': 'Trồng trọt chăn nuôi',
+
+  // Thần sát (吉神 - Cát thần)
+  '天德': 'Thiên Đức',
+  '月德': 'Nguyệt Đức',
+  '天德合': 'Thiên Đức Hợp',
+  '月德合': 'Nguyệt Đức Hợp',
+  '天恩': 'Thiên Ân',
+  '天赦': 'Thiên Xá',
+  '天愿': 'Thiên Nguyện',
+  '月恩': 'Nguyệt Ân',
+  '四相': 'Tứ Tướng',
+  '时德': 'Thời Đức',
+  '相日': 'Tương Nhật',
+  '驿马': 'Dịch Mã',
+  '天马': 'Thiên Mã',
+  '福德': 'Phúc Đức',
+  '圣心': 'Thánh Tâm',
+  '益后': 'Ích Hậu',
+  '续世': 'Tục Thế',
+  '明堂': 'Minh Đường',
+  '金堂': 'Kim Đường',
+  '金匮': 'Kim Quỹ',
+  '天贵': 'Thiên Quý',
+  '宝光': 'Bảo Quang',
+  '玉宇': 'Ngọc Vũ',
+  '龙德': 'Long Đức',
+  '玉堂': 'Ngọc Đường',
+  '司命': 'Tư Mệnh',
+  '青龙': 'Thanh Long',
+  '天喜': 'Thiên Hỷ',
+  '天医': 'Thiên Y',
+  '天仓': 'Thiên Thương',
+  '不将': 'Bất Tương',
+  '五合': 'Ngũ Hợp',
+  '六合': 'Lục Hợp',
+  '普护': 'Phổ Hộ',
+  '生气': 'Sinh Khí',
+  '解神': 'Giải Thần',
+  '三合': 'Tam Hợp',
+  '临日': 'Lâm Nhật',
+  '天巫': 'Thiên Vu',
+  '要安': 'Yếu An',
+  '鸣吠': 'Minh Phệ',
+  '鸣吠对': 'Minh Phệ Đối',
+  '母仓': 'Mẫu Thương',
+  '活曜': 'Hoạt Diệu',
+  '官日': 'Quan Nhật',
+  '吉期': 'Cát Kỳ',
+  '阳德': 'Dương Đức',
+  '阴德': 'Âm Đức',
+  '守日': 'Thủ Nhật',
+  '天成': 'Thiên Thành',
+
+  // Thần sát (凶煞 - Hung sát)
+  '天刑': 'Thiên Hình',
+  '天火': 'Thiên Hỏa',
+  '天吏': 'Thiên Lại',
+  '大时': 'Đại Thời',
+  '大败': 'Đại Bại',
+  '咸池': 'Hàm Trì',
+  '朱雀': 'Chu Tước',
+  '白虎': 'Bạch Hổ',
+  '天牢': 'Thiên Lao',
+  '玄武': 'Huyền Vũ',
+  '勾陈': 'Câu Trần',
+  '元武': 'Nguyên Vũ',
+  '天狗': 'Thiên Cẩu',
+  '死神': 'Tử Thần',
+  '死气': 'Tử Khí',
+  '游祸': 'Du Họa',
+  '五虚': 'Ngũ Hư',
+  '五离': 'Ngũ Ly',
+  '九空': 'Cửu Không',
+  '九坎': 'Cửu Khảm',
+  '九焦': 'Cửu Tiêu',
+  '土府': 'Thổ Phủ',
+  '土瘟': 'Thổ Ôn',
+  '土符': 'Thổ Phù',
+  '土忌': 'Thổ Kỵ',
+  '大煞': 'Đại Sát',
+  '月煞': 'Nguyệt Sát',
+  '月虚': 'Nguyệt Hư',
+  '月害': 'Nguyệt Hại',
+  '月刑': 'Nguyệt Hình',
+  '月厌': 'Nguyệt Yếm',
+  '月破': 'Nguyệt Phá',
+  '血忌': 'Huyết Kỵ',
+  '血支': 'Huyết Chi',
+  '天贼': 'Thiên Tặc',
+  '五墓': 'Ngũ Mộ',
+  '河魁': 'Hà Khôi',
+  '劫煞': 'Kiếp Sát',
+  '灾煞': 'Tai Sát',
+  '岁煞': 'Tuế Sát',
+  '厌对': 'Yếm Đối',
+  '招摇': 'Chiêu Dao',
+  '归忌': 'Quy Kỵ',
+  '重日': 'Trùng Nhật',
+  '复日': 'Phục Nhật',
+  '往亡': 'Vãng Vong',
+  '四废': 'Tứ Phế',
+  '四穷': 'Tứ Cùng',
+  '四绝': 'Tứ Tuyệt',
+  '四忌': 'Tứ Kỵ',
+  '四耗': 'Tứ Hao',
+  '八专': 'Bát Chuyên',
+  '刀砧': 'Đao Châm',
+  '触水龙': 'Xúc Thủy Long',
+  '小耗': 'Tiểu Hao',
+  '大耗': 'Đại Hao',
+  '八座': 'Bát Tọa',
+  '横天': 'Hoành Thiên',
+  '天罡': 'Thiên Cương',
+  '受死': 'Thọ Tử',
+  '天穷': 'Thiên Cùng',
+  '离巢': 'Ly Sào',
+  '孤辰': 'Cô Thần',
+  '寡宿': 'Quả Túc',
+  '阴错': 'Âm Thác',
+  '阳错': 'Dương Thác',
+  '绝阴': 'Tuyệt Âm',
+  '绝阳': 'Tuyệt Dương',
+  '行狠': 'Hành Ngận',
+  '了戾': 'Liễu Lệ',
+  '地火': 'Địa Hỏa',
+  '独火': 'Độc Hỏa'
+};
+
 // 28 Sao (Nhị Thập Bát Tú)
 const SAO_LIST = [
   { name: 'Giác', element: 'Mộc', animal: 'Giao', type: 'tot', meaning: 'Tốt cho xây dựng, cưới hỏi' },
@@ -110,6 +465,36 @@ const GIO_INFO = [
 ];
 
 class LunarCalendarEngine {
+  /**
+   * Dịch festival từ tiếng Trung sang tiếng Việt
+   */
+  translateFestival(chineseName) {
+    return FESTIVAL_TRANSLATIONS[chineseName] || chineseName;
+  }
+
+  /**
+   * Dịch mảng festivals
+   */
+  translateFestivals(festivals) {
+    if (!festivals || !Array.isArray(festivals)) return [];
+    return festivals.map(f => this.translateFestival(f));
+  }
+
+  /**
+   * Dịch hoạt động từ tiếng Trung sang tiếng Việt
+   */
+  translateActivity(chineseName) {
+    return ACTIVITY_TRANSLATIONS[chineseName] || chineseName;
+  }
+
+  /**
+   * Dịch mảng activities
+   */
+  translateActivities(activities) {
+    if (!activities || !Array.isArray(activities)) return [];
+    return activities.map(a => this.translateActivity(a));
+  }
+
   /**
    * Lấy thông tin đầy đủ cho một ngày
    */
@@ -184,11 +569,11 @@ class LunarCalendarEngine {
         prev: lunar.getPrevJieQi()?.getName() || null
       },
 
-      // Ngày đặc biệt
+      // Ngày đặc biệt (đã dịch sang tiếng Việt)
       festivals: {
-        solar: solar.getFestivals() || [],
-        lunar: lunar.getFestivals() || [],
-        other: lunar.getOtherFestivals() || []
+        solar: this.translateFestivals(solar.getFestivals()),
+        lunar: this.translateFestivals(lunar.getFestivals()),
+        other: this.translateFestivals(lunar.getOtherFestivals())
       },
 
       // Trực (12 Trực)
@@ -203,16 +588,16 @@ class LunarCalendarEngine {
       // Ngày tốt xấu
       dayQuality: this.getDayQuality(lunar, monthChi, dayChi),
 
-      // Việc nên làm / không nên làm
+      // Việc nên làm / không nên làm (đã dịch sang tiếng Việt)
       activities: {
-        good: lunar.getDayYi() || [],
-        bad: lunar.getDayJi() || []
+        good: this.translateActivities(lunar.getDayYi()),
+        bad: this.translateActivities(lunar.getDayJi())
       },
 
-      // Thần sát
+      // Thần sát (đã dịch sang tiếng Việt)
       spirits: {
-        good: lunar.getDayJiShen() || [],
-        bad: lunar.getDayXiongSha() || []
+        good: this.translateActivities(lunar.getDayJiShen()),
+        bad: this.translateActivities(lunar.getDayXiongSha())
       },
 
       // Xung khắc
@@ -516,7 +901,7 @@ class LunarCalendarEngine {
   }
 
   /**
-   * Lấy các ngày lễ trong tháng
+   * Lấy các ngày lễ trong tháng (đã dịch sang tiếng Việt)
    */
   getHolidaysInMonth(year, month) {
     const holidays = [];
@@ -526,9 +911,9 @@ class LunarCalendarEngine {
       const solar = Solar.fromYmd(year, month, day);
       const lunar = solar.getLunar();
 
-      const solarFestivals = solar.getFestivals() || [];
-      const lunarFestivals = lunar.getFestivals() || [];
-      const otherFestivals = lunar.getOtherFestivals() || [];
+      const solarFestivals = this.translateFestivals(solar.getFestivals());
+      const lunarFestivals = this.translateFestivals(lunar.getFestivals());
+      const otherFestivals = this.translateFestivals(lunar.getOtherFestivals());
 
       const allFestivals = [...solarFestivals, ...lunarFestivals, ...otherFestivals];
 
