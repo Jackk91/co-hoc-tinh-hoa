@@ -4,12 +4,12 @@ import { ScrollText, Calendar, User, ArrowRight, Bot, Loader2, RotateCcw, Sparkl
 import { fullNumerologyAnalysis } from '../utils/numerology';
 import { fullAstrologyAnalysis } from '../utils/astrology';
 import { generatePDF } from '../services/pdfGenerator';
-import OpenAI from 'openai';
+// import OpenAI from 'openai';
 
-const openai = new OpenAI({
-  apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-  dangerouslyAllowBrowser: true
-});
+// const openai = new OpenAI({
+//   apiKey: 'removed',
+//   dangerouslyAllowBrowser: true
+// });
 
 export default function ReportPage() {
   const [formData, setFormData] = useState({
@@ -203,33 +203,23 @@ export default function ReportPage() {
 ## X. VẬN HẠN NĂM ${new Date().getFullYear()}
 ## XI. LỜI KHUYÊN TỔNG HỢP`;
 
-      const response = await openai.chat.completions.create({
-        model: 'gpt-4o',
-        messages: [
-          {
-            role: 'system',
-            content: `Bạn là chuyên gia huyền học Á Đông uyên bác. Phong cách: Đẳng cấp, trưởng thành, tinh tế.
-Tránh mê tín, tập trung vào văn hóa và phát triển bản thân. Format Markdown.
-Kết hợp tất cả thông tin được cung cấp để tạo báo cáo tổng hợp toàn diện.`
-          },
-          {
-            role: 'user',
-            content: `Tạo BÁO CÁO TỔNG HỢP HUYỀN HỌC cho:
-${promptSections}
+      // SIMULATE AI DELAY
+      setTimeout(() => {
+        setReport(`### 🚧 Tính năng đang bảo trì
 
-Tạo báo cáo chi tiết với các phần:
-${reportSections}`
-          }
-        ],
-        max_tokens: 4000
-      });
+Hiện tại tính năng tạo báo cáo bằng AI đang được tạm dừng để nâng cấp hệ thống bảo mật.
 
-      setReport(response.choices[0].message.content);
+Chúng tôi chân thành xin lỗi vì sự bất tiện này.
+
+Trong thời gian chờ đợi, bạn vẫn có thể xem các chỉ số chi tiết về **Tử Vi** và **Thần Số Học** ở phần tóm tắt bên trên.`);
+        setIsGenerating(false);
+      }, 1500);
+
     } catch (error) {
       console.error('Error:', error);
       setReport('Không thể tạo báo cáo. Vui lòng thử lại sau.');
+      setIsGenerating(false);
     }
-    setIsGenerating(false);
   };
 
   const handleExportPDF = async () => {
@@ -330,7 +320,7 @@ ${reportSections}`
                     <label className="flex items-center gap-2 text-[var(--color-pearl)] mb-3 font-display">
                       <User size={18} className="text-[var(--color-gold)]" /> Họ và Tên
                     </label>
-                    <input type="text" value={formData.fullName} onChange={(e) => setFormData({...formData, fullName: e.target.value})} placeholder="Nguyễn Văn An" className="input-mystical w-full rounded-xl" required />
+                    <input type="text" value={formData.fullName} onChange={(e) => setFormData({ ...formData, fullName: e.target.value })} placeholder="Nguyễn Văn An" className="input-mystical w-full rounded-xl" required />
                   </div>
 
                   <div>
@@ -338,9 +328,9 @@ ${reportSections}`
                       <Calendar size={18} className="text-[var(--color-gold)]" /> Ngày Sinh
                     </label>
                     <div className="grid grid-cols-3 gap-4">
-                      <input type="number" value={formData.day} onChange={(e) => setFormData({...formData, day: e.target.value})} placeholder="Ngày" min="1" max="31" className="input-mystical rounded-xl text-center" required />
-                      <input type="number" value={formData.month} onChange={(e) => setFormData({...formData, month: e.target.value})} placeholder="Tháng" min="1" max="12" className="input-mystical rounded-xl text-center" required />
-                      <input type="number" value={formData.year} onChange={(e) => setFormData({...formData, year: e.target.value})} placeholder="Năm" min="1900" max="2100" className="input-mystical rounded-xl text-center" required />
+                      <input type="number" value={formData.day} onChange={(e) => setFormData({ ...formData, day: e.target.value })} placeholder="Ngày" min="1" max="31" className="input-mystical rounded-xl text-center" required />
+                      <input type="number" value={formData.month} onChange={(e) => setFormData({ ...formData, month: e.target.value })} placeholder="Tháng" min="1" max="12" className="input-mystical rounded-xl text-center" required />
+                      <input type="number" value={formData.year} onChange={(e) => setFormData({ ...formData, year: e.target.value })} placeholder="Năm" min="1900" max="2100" className="input-mystical rounded-xl text-center" required />
                     </div>
                   </div>
 
@@ -348,7 +338,7 @@ ${reportSections}`
                     <label className="block text-[var(--color-pearl)] mb-3 font-display">Giới tính</label>
                     <div className="flex gap-4">
                       {['Nam', 'Nữ', 'Khác'].map((g) => (
-                        <button key={g} type="button" onClick={() => setFormData({...formData, gender: g})}
+                        <button key={g} type="button" onClick={() => setFormData({ ...formData, gender: g })}
                           className={`flex-1 py-3 rounded-xl border transition-all ${formData.gender === g ? 'border-[var(--color-gold)] bg-[var(--color-gold)]/20 text-[var(--color-gold)]' : 'border-[var(--color-smoke)] text-[var(--color-mist)] hover:border-[var(--color-gold)]/50'}`}>
                           {g}
                         </button>
@@ -360,7 +350,7 @@ ${reportSections}`
                     <label className="block text-[var(--color-pearl)] mb-3 font-display">Mục tiêu cuộc sống (tùy chọn)</label>
                     <div className="flex flex-wrap gap-2">
                       {['Sự nghiệp', 'Tình duyên', 'Tài chính', 'Sức khỏe', 'Gia đình', 'Phát triển bản thân'].map((goal) => (
-                        <button key={goal} type="button" onClick={() => setFormData({...formData, goal: formData.goal === goal ? '' : goal})}
+                        <button key={goal} type="button" onClick={() => setFormData({ ...formData, goal: formData.goal === goal ? '' : goal })}
                           className={`px-4 py-2 rounded-lg border transition-all text-sm ${formData.goal === goal ? 'border-[var(--color-jade)] bg-[var(--color-jade)]/20 text-[var(--color-jade)]' : 'border-[var(--color-smoke)] text-[var(--color-mist)] hover:border-[var(--color-jade)]/50'}`}>
                           {goal}
                         </button>
@@ -384,15 +374,13 @@ ${reportSections}`
                         key={section.key}
                         type="button"
                         onClick={() => handleSectionToggle(section.key)}
-                        className={`flex items-center gap-2 p-4 rounded-xl border transition-all ${
-                          includeSections[section.key]
+                        className={`flex items-center gap-2 p-4 rounded-xl border transition-all ${includeSections[section.key]
                             ? `border-[var(--color-${section.color})] bg-[var(--color-${section.color})]/20 text-[var(--color-${section.color})]`
                             : 'border-[var(--color-smoke)] text-[var(--color-mist)] hover:border-[var(--color-gold)]/50'
-                        }`}
+                          }`}
                       >
-                        <div className={`w-5 h-5 rounded border-2 flex items-center justify-center ${
-                          includeSections[section.key] ? `border-[var(--color-${section.color})] bg-[var(--color-${section.color})]` : 'border-[var(--color-mist)]'
-                        }`}>
+                        <div className={`w-5 h-5 rounded border-2 flex items-center justify-center ${includeSections[section.key] ? `border-[var(--color-${section.color})] bg-[var(--color-${section.color})]` : 'border-[var(--color-mist)]'
+                          }`}>
                           {includeSections[section.key] && <Check size={12} className="text-white" />}
                         </div>
                         <section.icon size={18} />
@@ -426,7 +414,7 @@ ${reportSections}`
                           <label className="block text-sm text-[var(--color-pearl)] mb-2">{line.label}</label>
                           <select
                             value={palmistryInput[line.key]}
-                            onChange={(e) => setPalmistryInput({...palmistryInput, [line.key]: e.target.value})}
+                            onChange={(e) => setPalmistryInput({ ...palmistryInput, [line.key]: e.target.value })}
                             className="input-mystical w-full rounded-xl"
                           >
                             <option value="">-- Chọn --</option>
@@ -468,7 +456,7 @@ ${reportSections}`
                           <label className="block text-xs text-[var(--color-pearl)] mb-2">{feature.label}</label>
                           <select
                             value={physiognomyInput[feature.key]}
-                            onChange={(e) => setPhysiognomyInput({...physiognomyInput, [feature.key]: e.target.value})}
+                            onChange={(e) => setPhysiognomyInput({ ...physiognomyInput, [feature.key]: e.target.value })}
                             className="input-mystical w-full rounded-lg text-sm py-2"
                           >
                             <option value="">-- Chọn --</option>
@@ -490,11 +478,10 @@ ${reportSections}`
                     <button
                       type="button"
                       onClick={() => setPdfTheme('dark')}
-                      className={`flex-1 flex items-center justify-center gap-3 p-4 rounded-xl border transition-all ${
-                        pdfTheme === 'dark'
+                      className={`flex-1 flex items-center justify-center gap-3 p-4 rounded-xl border transition-all ${pdfTheme === 'dark'
                           ? 'border-[var(--color-gold)] bg-[var(--color-charcoal)]'
                           : 'border-[var(--color-smoke)] hover:border-[var(--color-gold)]/50'
-                      }`}
+                        }`}
                     >
                       <Moon size={20} className={pdfTheme === 'dark' ? 'text-[var(--color-gold)]' : 'text-[var(--color-mist)]'} />
                       <span className={pdfTheme === 'dark' ? 'text-[var(--color-gold)]' : 'text-[var(--color-mist)]'}>Tối (Dark)</span>
@@ -504,11 +491,10 @@ ${reportSections}`
                     <button
                       type="button"
                       onClick={() => setPdfTheme('light')}
-                      className={`flex-1 flex items-center justify-center gap-3 p-4 rounded-xl border transition-all ${
-                        pdfTheme === 'light'
+                      className={`flex-1 flex items-center justify-center gap-3 p-4 rounded-xl border transition-all ${pdfTheme === 'light'
                           ? 'border-[var(--color-gold)] bg-[var(--color-ivory)]/10'
                           : 'border-[var(--color-smoke)] hover:border-[var(--color-gold)]/50'
-                      }`}
+                        }`}
                     >
                       <Sun size={20} className={pdfTheme === 'light' ? 'text-[var(--color-gold)]' : 'text-[var(--color-mist)]'} />
                       <span className={pdfTheme === 'light' ? 'text-[var(--color-gold)]' : 'text-[var(--color-mist)]'}>Sáng (Light)</span>

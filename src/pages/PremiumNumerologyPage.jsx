@@ -108,34 +108,17 @@ export default function PremiumNumerologyPage() {
     setIsGeneratingAI(true);
     setAiReport('');
 
-    try {
-      const prompt = generateNumerologyAnalysisPrompt(profile);
+    // Simulate delay for better UX
+    setTimeout(() => {
+      setAiReport(`### 🚧 Tính năng đang bảo trì
 
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${import.meta.env.VITE_OPENAI_API_KEY}`
-        },
-        body: JSON.stringify({
-          model: 'gpt-4o',
-          messages: [
-            { role: 'system', content: NUMEROLOGY_SYSTEM_PROMPT },
-            { role: 'user', content: prompt }
-          ],
-          temperature: 0.8,
-          max_tokens: 4000
-        })
-      });
+Hiện tại tính năng phân tích bằng AI đang được tạm dừng để nâng cấp hệ thống bảo mật và cấu trúc lại Backend.
 
-      const data = await response.json();
-      setAiReport(data.choices[0].message.content);
-    } catch (error) {
-      console.error('AI Error:', error);
-      setAiReport('Đã xảy ra lỗi khi tạo báo cáo. Vui lòng thử lại sau.');
-    } finally {
+Vui lòng quay lại sau! Chúng tôi xin lỗi vì sự bất tiện này.
+
+Trong thời gian chờ đợi, bạn có thể tham khảo các chỉ số chi tiết ở bên trên.`);
       setIsGeneratingAI(false);
-    }
+    }, 1500);
   };
 
   // Render input form

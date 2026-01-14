@@ -12,12 +12,12 @@ import { calculateBirthdayChart, calculatePinnaclePyramid, calculateLifeCycles }
 import { crossReferenceAnalysis } from '../utils/crossAnalysis';
 import { generatePDF } from '../services/pdfGenerator';
 import { getBirthHourFromTime, TIME_PERIODS } from '../utils/birthHourMapping';
-import OpenAI from 'openai';
+// import OpenAI from 'openai';
 
-const openai = new OpenAI({
-  apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-  dangerouslyAllowBrowser: true
-});
+// const openai = new OpenAI({
+//   apiKey: 'removed',
+//   dangerouslyAllowBrowser: true
+// });
 
 export default function PremiumReportPage() {
   const [stage, setStage] = useState('wizard'); // 'wizard', 'loading', 'reveal', 'dashboard'
@@ -123,56 +123,16 @@ export default function PremiumReportPage() {
   };
 
   const generateAIReport = async (data, tuVi, numerology, cross) => {
-    try {
-      const response = await openai.chat.completions.create({
-        model: 'gpt-4o',
-        messages: [
-          {
-            role: 'system',
-            content: `Bạn là Đại Sư Huyền Không - chuyên gia hàng đầu về Tử Vi Đẩu Số, Thần Số Học.
-Phong cách: Uyên bác nhưng gần gũi, tránh mê tín, tập trung phát triển bản thân.
-Sử dụng ẩn dụ văn hóa Á Đông. Format Markdown.`
-          },
-          {
-            role: 'user',
-            content: `Phân tích TỔNG HỢP cho:
+    // Simulate delay
+    setTimeout(() => {
+      setAiReport(`### 🚧 Tính năng đang bảo trì
 
-**THÔNG TIN:**
-- Họ tên: ${data.fullName}
-- Giới tính: ${data.gender === 'male' ? 'Nam' : data.gender === 'female' ? 'Nữ' : 'Khác'}
-- Ngày sinh: ${data.birthDay}/${data.birthMonth}/${data.birthYear}
+Hiện tại tính năng **Đại Sư Huyền Không AI** đang được tạm dừng để nâng cấp hệ thống bảo mật và tối ưu hóa backend.
 
-**TỬ VI:**
-- Mệnh cung: ${tuVi?.menhChi || 'N/A'}
-- Sao chính: ${tuVi?.menhMainStar?.name || 'Không có'}
-- Cục: ${tuVi?.cuc?.name || 'N/A'}
-- Năm: ${tuVi?.lunarDate?.yearGanZhi || 'N/A'}
+Chúng tôi chân thành xin lỗi vì sự bất tiện này.
 
-**THẦN SỐ HỌC:**
-- Số Chủ Đạo: ${numerology?.lifePath || 'N/A'}
-- Số Biểu Đạt: ${numerology?.expression || 'N/A'}
-- Số Linh Hồn: ${numerology?.soulUrge || 'N/A'}
-- Số Nhân Cách: ${numerology?.personality || 'N/A'}
-
-**PHÂN TÍCH TƯƠNG QUAN:**
-- Điểm hài hòa: ${cross?.overallScore || 'N/A'}%
-- Nhận định: ${cross?.summary || 'N/A'}
-
-Tạo báo cáo ngắn gọn (500 từ) với:
-## TỔNG QUAN VẬN MỆNH
-## ĐIỂM NỔI BẬT
-## DỰ BÁO GIAI ĐOẠN TỚI
-## LỜI KHUYÊN`
-          }
-        ],
-        max_tokens: 1500
-      });
-
-      setAiReport(response.choices[0].message.content);
-    } catch (error) {
-      console.error('AI Report error:', error);
-      setAiReport('Không thể tạo báo cáo AI. Vui lòng thử lại sau.');
-    }
+Trong thời gian chờ đợi, bạn có thể tham khảo các biểu đồ và chỉ số tính toán offline ở bên trên. Chúng tôi sẽ sớm quay trở lại!`);
+    }, 1000);
   };
 
   const toggleSection = (section) => {
@@ -234,16 +194,16 @@ Tạo báo cáo ngắn gọn (500 từ) với:
             className="text-6xl mb-6"
           >
             {tuViData?.lunarDate?.yearGanZhi?.includes('Ngọ') ? '🐴' :
-             tuViData?.lunarDate?.yearGanZhi?.includes('Tý') ? '🐀' :
-             tuViData?.lunarDate?.yearGanZhi?.includes('Sửu') ? '🐂' :
-             tuViData?.lunarDate?.yearGanZhi?.includes('Dần') ? '🐅' :
-             tuViData?.lunarDate?.yearGanZhi?.includes('Mão') ? '🐇' :
-             tuViData?.lunarDate?.yearGanZhi?.includes('Thìn') ? '🐉' :
-             tuViData?.lunarDate?.yearGanZhi?.includes('Tỵ') ? '🐍' :
-             tuViData?.lunarDate?.yearGanZhi?.includes('Mùi') ? '🐐' :
-             tuViData?.lunarDate?.yearGanZhi?.includes('Thân') ? '🐒' :
-             tuViData?.lunarDate?.yearGanZhi?.includes('Dậu') ? '🐓' :
-             tuViData?.lunarDate?.yearGanZhi?.includes('Tuất') ? '🐕' : '🐖'}
+              tuViData?.lunarDate?.yearGanZhi?.includes('Tý') ? '🐀' :
+                tuViData?.lunarDate?.yearGanZhi?.includes('Sửu') ? '🐂' :
+                  tuViData?.lunarDate?.yearGanZhi?.includes('Dần') ? '🐅' :
+                    tuViData?.lunarDate?.yearGanZhi?.includes('Mão') ? '🐇' :
+                      tuViData?.lunarDate?.yearGanZhi?.includes('Thìn') ? '🐉' :
+                        tuViData?.lunarDate?.yearGanZhi?.includes('Tỵ') ? '🐍' :
+                          tuViData?.lunarDate?.yearGanZhi?.includes('Mùi') ? '🐐' :
+                            tuViData?.lunarDate?.yearGanZhi?.includes('Thân') ? '🐒' :
+                              tuViData?.lunarDate?.yearGanZhi?.includes('Dậu') ? '🐓' :
+                                tuViData?.lunarDate?.yearGanZhi?.includes('Tuất') ? '🐕' : '🐖'}
           </motion.div>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}

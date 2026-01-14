@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Navigation } from './components/navigation';
+import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import NumerologyPage from './pages/NumerologyPage';
@@ -42,7 +42,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[var(--color-obsidian)] flex flex-col">
-      <Navigation currentPage={currentPage} onNavigate={setCurrentPage} />
+      <Header currentPage={currentPage} onNavigate={setCurrentPage} />
 
       <AnimatePresence mode="wait">
         <motion.main

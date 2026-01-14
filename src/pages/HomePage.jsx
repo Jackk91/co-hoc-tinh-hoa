@@ -16,8 +16,85 @@ import {
   Sun,
   Heart,
   Calendar,
-  Compass
+  Compass,
+  LayoutGrid
 } from 'lucide-react';
+
+// Custom Specialized Icons for Features
+const AstrologyIcon = ({ size = 32, color = "#d4af37" }) => (
+  <svg width={size} height={size} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    {/* Constellation lines */}
+    <path d="M20 45L35 38L50 48L70 52L85 45L80 65L65 68L50 52" stroke={color} strokeWidth="1.5" strokeLinecap="round" opacity="0.6" />
+    {/* Stars */}
+    <circle cx="20" cy="45" r="2" fill={color} />
+    <circle cx="35" cy="38" r="2" fill={color} />
+    <circle cx="50" cy="48" r="2" fill={color} />
+    <circle cx="70" cy="52" r="2" fill={color} />
+    <circle cx="85" cy="45" r="2" fill={color} />
+    <circle cx="80" cy="65" r="2" fill={color} />
+    <circle cx="65" cy="68" r="2" fill={color} />
+    {/* Highlight stars */}
+    <path d="M50 15L52 23L60 25L52 27L50 35L48 27L40 25L48 23L50 15Z" fill={color} />
+    <path d="M25 75L26 79L30 80L26 81L25 85L24 81L20 80L24 79L25 75Z" fill={color} />
+    <path d="M80 20L81 22L83 23L81 24L80 26L79 24L77 23L79 22L80 20Z" fill={color} />
+  </svg>
+);
+
+const NumerologyIcon = ({ size = 32, color = "#d4af37" }) => (
+  <svg width={size} height={size} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="15" y="15" width="70" height="70" rx="4" stroke={color} strokeWidth="3" />
+    <line x1="15" y1="38" x2="85" y2="38" stroke={color} strokeWidth="2" />
+    <line x1="15" y1="62" x2="85" y2="62" stroke={color} strokeWidth="2" />
+    <line x1="38" y1="15" x2="38" y2="85" stroke={color} strokeWidth="2" />
+    <line x1="62" y1="15" x2="62" y2="85" stroke={color} strokeWidth="2" />
+    {/* Numbers - simplified as paths/dots/glyphs */}
+    <text x="26.5" y="31" fill={color} fontSize="14" fontWeight="bold" textAnchor="middle">1</text>
+    <text x="50" y="31" fill={color} fontSize="14" fontWeight="bold" textAnchor="middle">2</text>
+    <text x="73.5" y="31" fill={color} fontSize="14" fontWeight="bold" textAnchor="middle">3</text>
+    <text x="26.5" y="55" fill={color} fontSize="14" fontWeight="bold" textAnchor="middle">4</text>
+    <text x="50" y="55" fill={color} fontSize="14" fontWeight="bold" textAnchor="middle">5</text>
+    <text x="73.5" y="55" fill={color} fontSize="14" fontWeight="bold" textAnchor="middle">6</text>
+    <text x="26.5" y="79" fill={color} fontSize="14" fontWeight="bold" textAnchor="middle">7</text>
+    <text x="50" y="79" fill={color} fontSize="14" fontWeight="bold" textAnchor="middle">8</text>
+    <text x="73.5" y="79" fill={color} fontSize="14" fontWeight="bold" textAnchor="middle">9</text>
+  </svg>
+);
+
+const PalmistryIcon = ({ size = 32, color = "#d4af37" }) => (
+  <svg width={size} height={size} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    {/* Fine Line Luxury Hand Outline */}
+    <path
+      d="M32 90 C 25 90, 20 82, 20 68 C 20 60, 16 56, 12 50 C 9 43, 13 38, 20 38 C 25 38, 30 42, 32 50 V 22 C 32 17, 39 17, 39 22 V 45 H 41 V 15 C 41 10, 48 10, 48 15 V 45 H 51 V 12 C 51 7, 58 7, 58 12 V 45 H 61 V 18 C 61 13, 68 13, 68 18 V 55 C 68 75, 55 90, 35 90 Z"
+      stroke={color}
+      strokeWidth="2.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    {/* Spiritual Palm Lines */}
+    <path d="M35 55 C 45 48, 60 48, 70 55" stroke={color} strokeWidth="1.5" strokeLinecap="round" opacity="0.8" />
+    <path d="M32 63 C 45 60, 58 61, 68 72" stroke={color} strokeWidth="1.5" strokeLinecap="round" opacity="0.8" />
+    <path d="M30 48 C 38 58, 40 75, 35 88" stroke={color} strokeWidth="1.5" strokeLinecap="round" opacity="0.8" />
+    <path d="M48 58 V 85" stroke={color} strokeWidth="1" strokeLinecap="round" opacity="0.5" />
+  </svg>
+);
+
+const PhysiognomyIcon = ({ size = 32, color = "#d4af37" }) => (
+  <svg width={size} height={size} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    {/* Elegant Face Outline */}
+    <path d="M28 40 C 28 18, 40 10, 50 10 C 60 10, 72 18, 72 40 C 72 65, 65 85, 50 85 C 35 85, 28 65, 28 40 Z" stroke={color} strokeWidth="2.2" strokeLinejoin="round" />
+    {/* Soft Ears */}
+    <path d="M28 42 C 24 44, 24 56, 28 58" stroke={color} strokeWidth="2" strokeLinecap="round" />
+    <path d="M72 42 C 76 44, 76 56, 72 58" stroke={color} strokeWidth="2" strokeLinecap="round" />
+    {/* Refined Features */}
+    <path d="M35 38 C 40 35, 45 35, 48 38" stroke={color} strokeWidth="1.8" strokeLinecap="round" />
+    <path d="M52 38 C 55 35, 60 35, 65 38" stroke={color} strokeWidth="1.8" strokeLinecap="round" />
+    <path d="M35 46 C 40 43, 45 43, 48 46 C 45 49, 40 49, 35 46 Z" fill={color} />
+    <path d="M52 46 C 55 43, 60 43, 65 46 C 60 49, 55 49, 52 46 Z" fill={color} />
+    <path d="M50 45 V 60 C 47 64, 53 64, 50 60" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    {/* Neutral, Professional Mouth */}
+    <path d="M40 73 H 60" stroke={color} strokeWidth="2" strokeLinecap="round" opacity="0.9" />
+  </svg>
+);
 
 // Luxury Animations
 import {
@@ -39,7 +116,7 @@ import {
 const features = [
   {
     id: 'astrology',
-    icon: Sparkles,
+    icon: AstrologyIcon,
     title: 'Tử Vi',
     subtitle: 'Lá số mệnh vận',
     description: 'Khám phá vận mệnh qua hệ thống Can Chi và 12 Con Giáp theo truyền thống Á Đông.',
@@ -48,7 +125,7 @@ const features = [
   },
   {
     id: 'numerology',
-    icon: Hash,
+    icon: NumerologyIcon,
     title: 'Thần Số Học',
     subtitle: 'Con số định mệnh',
     description: 'Giải mã bản đồ số mệnh từ tên và ngày sinh theo phương pháp Pythagorean & Chaldean.',
@@ -57,7 +134,7 @@ const features = [
   },
   {
     id: 'palmistry',
-    icon: Hand,
+    icon: PalmistryIcon,
     title: 'Chỉ Tay Học',
     subtitle: 'Nghệ thuật đọc vân tay',
     description: 'Phân tích đường vân tay theo nghệ thuật Chỉ Tay Học cổ xưa Á Đông.',
@@ -66,7 +143,7 @@ const features = [
   },
   {
     id: 'physiognomy',
-    icon: User,
+    icon: PhysiognomyIcon,
     title: 'Nhân Tướng Học',
     subtitle: 'Thuật xem tướng mạo',
     description: 'Đọc ngũ quan theo Nhân Tướng Học - nghệ thuật xem tướng mạo cổ truyền.',
@@ -244,56 +321,43 @@ export default function HomePage({ onNavigate }) {
             </p>
           </RevealOnScroll>
 
-          {/* Feature Cards Grid */}
-          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8" staggerDelay={0.15}>
+          {/* Feature Cards Grid - Centered Icon Style */}
+          <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch" staggerDelay={0.15}>
             {features.map((feature) => {
-              const Icon = feature.icon;
               return (
-                <StaggerItem key={feature.id}>
-                  <TiltCard maxTilt={5} glareOpacity={0.08}>
+                <StaggerItem key={feature.id} className="h-full">
+                  <TiltCard maxTilt={5} glareOpacity={0.08} className="h-full">
                     <motion.div
-                      className="luxury-card rounded-2xl p-7 md:p-8 cursor-pointer group h-full"
+                      className="luxury-card rounded-2xl p-6 md:p-8 cursor-pointer group h-full flex flex-col items-center text-center"
                       onClick={() => onNavigate(feature.id)}
                       whileHover={{ y: -4 }}
                       transition={{ duration: 0.3 }}
+                      style={{
+                        background: 'linear-gradient(180deg, rgba(20,18,15,0.95) 0%, rgba(15,13,10,0.98) 100%)',
+                        border: '1px solid var(--lux-gold-dim)',
+                      }}
                     >
-                      <div className="flex items-start gap-5">
-                        {/* Icon */}
-                        <div
-                          className="flex-shrink-0 w-16 h-16 rounded-xl flex items-center justify-center transition-all duration-500 group-hover:scale-110"
-                          style={{
-                            background: `linear-gradient(135deg, ${feature.colorVar}20, ${feature.colorVar}10)`,
-                            border: `1px solid ${feature.colorVar}40`,
-                            boxShadow: `0 0 20px ${feature.colorVar}20`
-                          }}
-                        >
-                          <Icon size={28} style={{ color: feature.colorVar }} />
-                        </div>
-
-                        {/* Content */}
-                        <div className="flex-1">
-                          <div className="flex items-baseline gap-3 mb-3">
-                            <h3 className="font-display text-2xl text-[var(--lux-ivory)] group-hover:text-[var(--lux-gold)] transition-colors duration-300">
-                              {feature.title}
-                            </h3>
-                            <span className="text-xs text-[var(--lux-mist)] tracking-wider">
-                              {feature.subtitle}
-                            </span>
-                          </div>
-                          <p className="text-[var(--lux-pearl)] leading-relaxed">
-                            {feature.description}
-                          </p>
-                        </div>
+                      {/* Large Iconic SVG for Feature */}
+                      <div className="relative mb-8 flex items-center justify-center transition-all duration-500 group-hover:scale-105" style={{ width: '120px', height: '120px' }}>
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.1)_0%,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        {feature.icon && (
+                          <feature.icon
+                            size={100}
+                            color="#d4af37"
+                            className="transition-all duration-300 drop-shadow-[0_0_20px_rgba(212,175,55,0.4)]"
+                          />
+                        )}
                       </div>
 
-                      {/* Hover Arrow */}
-                      <motion.div
-                        className="absolute bottom-6 right-6 text-[var(--lux-gold)] opacity-0 group-hover:opacity-100 transition-all duration-300"
-                        initial={{ x: -5 }}
-                        whileHover={{ x: 0 }}
-                      >
-                        <ArrowRight size={20} />
-                      </motion.div>
+                      {/* Title */}
+                      <h3 className="font-display text-xl md:text-2xl text-[var(--lux-gold)] mb-3 tracking-wide uppercase">
+                        {feature.title}
+                      </h3>
+
+                      {/* Description */}
+                      <p className="text-[var(--lux-pearl)] text-sm leading-relaxed opacity-80">
+                        {feature.description}
+                      </p>
                     </motion.div>
                   </TiltCard>
                 </StaggerItem>
@@ -331,12 +395,12 @@ export default function HomePage({ onNavigate }) {
           </RevealOnScroll>
 
           {/* Premium Cards Grid */}
-          <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8" staggerDelay={0.15}>
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch" staggerDelay={0.15}>
             {premiumFeatures.map((feature) => {
               const Icon = feature.icon;
               return (
-                <StaggerItem key={feature.id}>
-                  <TiltCard maxTilt={6} glareOpacity={0.1}>
+                <StaggerItem key={feature.id} className="h-full">
+                  <TiltCard maxTilt={6} glareOpacity={0.1} className="h-full">
                     <motion.div
                       className="relative luxury-card rounded-2xl p-7 md:p-8 cursor-pointer group overflow-hidden h-full"
                       onClick={() => onNavigate(feature.id)}

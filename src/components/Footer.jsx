@@ -22,8 +22,55 @@ export default function Footer() {
 
             {/* Brand */}
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[var(--lux-gold)]/20 to-[var(--lux-gold)]/5 flex items-center justify-center">
-                <Sparkles size={14} className="text-[var(--lux-gold)]" />
+              {/* Logo Icon - Bagua (Bát Quái) */}
+              <div className="relative w-10 h-10">
+                <div className="absolute inset-0 bg-gradient-to-br from-[var(--lux-gold)]/20 to-[var(--lux-gold)]/5 rounded-full" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <svg viewBox="0 0 100 100" className="w-8 h-8">
+                    {/* Outer circle */}
+                    <circle cx="50" cy="50" r="48" fill="none" stroke="var(--lux-gold)" strokeWidth="1.5" />
+
+                    {/* Yin-Yang symbol in center */}
+                    <circle cx="50" cy="50" r="16" fill="var(--lux-gold)" />
+                    <path d="M50,34 A16,16 0 0,1 50,66 A8,8 0 0,0 50,50 A8,8 0 0,1 50,34" fill="var(--lux-ink)" />
+                    <circle cx="50" cy="42" r="2.5" fill="var(--lux-gold)" />
+                    <circle cx="50" cy="58" r="2.5" fill="var(--lux-ink)" />
+
+                    {/* Qian ☰ - top */}
+                    <g transform="translate(50, 10)">
+                      <rect x="-8" y="0" width="16" height="1.5" fill="var(--lux-gold)" />
+                      <rect x="-8" y="3" width="16" height="1.5" fill="var(--lux-gold)" />
+                      <rect x="-8" y="6" width="16" height="1.5" fill="var(--lux-gold)" />
+                    </g>
+
+                    {/* Kun ☷ - bottom */}
+                    <g transform="translate(50, 84)">
+                      <rect x="-8" y="0" width="7" height="1.5" fill="var(--lux-gold)" />
+                      <rect x="1" y="0" width="7" height="1.5" fill="var(--lux-gold)" />
+                      <rect x="-8" y="3" width="7" height="1.5" fill="var(--lux-gold)" />
+                      <rect x="1" y="3" width="7" height="1.5" fill="var(--lux-gold)" />
+                      <rect x="-8" y="6" width="7" height="1.5" fill="var(--lux-gold)" />
+                      <rect x="1" y="6" width="7" height="1.5" fill="var(--lux-gold)" />
+                    </g>
+
+                    {/* Li ☲ - right */}
+                    <g transform="translate(85, 50) rotate(90)">
+                      <rect x="-5" y="-6" width="10" height="1.5" fill="var(--lux-gold)" />
+                      <rect x="-5" y="-3" width="4" height="1.5" fill="var(--lux-gold)" />
+                      <rect x="1" y="-3" width="4" height="1.5" fill="var(--lux-gold)" />
+                      <rect x="-5" y="0" width="10" height="1.5" fill="var(--lux-gold)" />
+                    </g>
+
+                    {/* Kan ☵ - left */}
+                    <g transform="translate(15, 50) rotate(90)">
+                      <rect x="-5" y="-6" width="4" height="1.5" fill="var(--lux-gold)" />
+                      <rect x="1" y="-6" width="4" height="1.5" fill="var(--lux-gold)" />
+                      <rect x="-5" y="-3" width="10" height="1.5" fill="var(--lux-gold)" />
+                      <rect x="-5" y="0" width="4" height="1.5" fill="var(--lux-gold)" />
+                      <rect x="1" y="0" width="4" height="1.5" fill="var(--lux-gold)" />
+                    </g>
+                  </svg>
+                </div>
               </div>
               <div>
                 <span className="text-[var(--lux-ivory)] font-display text-sm tracking-wide">
@@ -45,7 +92,7 @@ export default function Footer() {
               <Heart size={12} className="text-[var(--lux-vermillion)]" />
               <span className="text-[var(--lux-mist)] text-xs">by</span>
               <span className="text-[var(--lux-gold)] text-xs font-medium tracking-wide">
-                Vibecode Kit V4
+                AI
               </span>
             </motion.div>
 
@@ -70,6 +117,6 @@ export default function Footer() {
           </p>
         </div>
       </div>
-    </footer>
+    </footer >
   );
 }
