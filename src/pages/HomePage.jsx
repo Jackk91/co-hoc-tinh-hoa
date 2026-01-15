@@ -110,6 +110,7 @@ import {
 } from '../components/animations';
 
 import TetWishPopup from '../components/TetWishPopup';
+import heroBgPattern from '../data/sponsor/hero-bg-pattern.svg';
 
 // ==============================================
 // DATA - 100% Vietnamese
@@ -217,9 +218,23 @@ export default function HomePage({ onNavigate }) {
       <FloatingParticles count={30} />
 
       {/* ========== HERO SECTION ========== */}
-      <section className="relative pt-28 md:pt-36 pb-24 px-4">
+      <section className="relative pt-28 md:pt-36 pb-24 px-4 overflow-hidden">
+        {/* Premium Background Pattern SVG */}
+        <motion.div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[45%] w-[1400px] max-w-none pointer-events-none opacity-[0.5] z-0"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 0.5, scale: 1.1 }}
+          transition={{ duration: 3, ease: "easeOut" }}
+        >
+          <img
+            src={heroBgPattern}
+            alt=""
+            className="w-full h-auto animate-rotate-slow brightness-110"
+          />
+        </motion.div>
+
         <CinematicReveal delay={0.2}>
-          <div className="max-w-5xl mx-auto text-center">
+          <div className="max-w-5xl mx-auto text-center relative z-10">
 
             {/* Decorative Header */}
             <motion.div

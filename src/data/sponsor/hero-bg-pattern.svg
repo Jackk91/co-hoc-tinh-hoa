@@ -1,0 +1,77 @@
+<svg width="1200" height="1200" viewBox="0 0 1200 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    
+    <g id="petal">
+      <ellipse cx="600" cy="250" rx="60" ry="120" stroke="#F2D479" stroke-width="0.3" opacity="0.3" />
+      <ellipse cx="600" cy="250" rx="40" ry="90" stroke="#F2D479" stroke-width="0.2" opacity="0.2" />
+    </g>
+
+    <g id="marker-set">
+      <circle cx="600" cy="80" r="2" fill="#F2D479" />
+      <line x1="600" y1="70" x2="600" y2="90" stroke="#F2D479" stroke-width="0.5" />
+    </g>
+  </defs>
+
+  <!-- Ambient Central Glow -->
+  <circle cx="600" cy="600" r="500" fill="radial-gradient(circle, rgba(242,212,121,0.08) 0%, transparent 70%)" />
+
+  <!-- Multiple Concentric Circles -->
+  <circle cx="600" cy="600" r="580" stroke="#F2D479" stroke-width="0.5" stroke-dasharray="2 10" opacity="0.2" />
+  <circle cx="600" cy="600" r="550" stroke="#F2D479" stroke-width="1.2" opacity="0.4" />
+  <circle cx="600" cy="600" r="542" stroke="#F2D479" stroke-width="0.6" opacity="0.2" />
+  
+  <circle cx="600" cy="600" r="460" stroke="#F2D479" stroke-width="0.4" stroke-dasharray="20 40" opacity="0.15" />
+  <circle cx="600" cy="600" r="450" stroke="#F2D479" stroke-width="0.8" opacity="0.3" />
+  
+  <circle cx="600" cy="600" r="300" stroke="#F2D479" stroke-width="0.5" stroke-dasharray="5 15" opacity="0.2" />
+
+  <!-- Harmonic Rotational Elements -->
+  <g id="rotated-petals">
+    <use href="#petal" transform="rotate(0 600 600)" />
+    <use href="#petal" transform="rotate(20 600 600)" />
+    <use href="#petal" transform="rotate(40 600 600)" />
+    <use href="#petal" transform="rotate(60 600 600)" />
+    <use href="#petal" transform="rotate(80 600 600)" />
+    <use href="#petal" transform="rotate(100 600 600)" />
+    <use href="#petal" transform="rotate(120 600 600)" />
+    <use href="#petal" transform="rotate(140 600 600)" />
+    <use href="#petal" transform="rotate(160 600 600)" />
+    <use href="#petal" transform="rotate(180 600 600)" />
+    <use href="#petal" transform="rotate(200 600 600)" />
+    <use href="#petal" transform="rotate(220 600 600)" />
+    <use href="#petal" transform="rotate(240 600 600)" />
+    <use href="#petal" transform="rotate(260 600 600)" />
+    <use href="#petal" transform="rotate(280 600 600)" />
+    <use href="#petal" transform="rotate(300 600 600)" />
+    <use href="#petal" transform="rotate(320 600 600)" />
+    <use href="#petal" transform="rotate(340 600 600)" />
+  </g>
+
+  <!-- Point Markers around the main ring -->
+  <g>
+    <use href="#marker-set" transform="rotate(15 600 600)" />
+    <use href="#marker-set" transform="rotate(45 600 600)" />
+    <use href="#marker-set" transform="rotate(75 600 600)" />
+    <use href="#marker-set" transform="rotate(105 600 600)" />
+    <use href="#marker-set" transform="rotate(135 600 600)" />
+    <use href="#marker-set" transform="rotate(165 600 600)" />
+    <use href="#marker-set" transform="rotate(195 600 600)" />
+    <use href="#marker-set" transform="rotate(225 600 600)" />
+    <use href="#marker-set" transform="rotate(255 600 600)" />
+    <use href="#marker-set" transform="rotate(285 600 600)" />
+    <use href="#marker-set" transform="rotate(315 600 600)" />
+    <use href="#marker-set" transform="rotate(345 600 600)" />
+  </g>
+
+  <!-- Fine grid dots -->
+  <g opacity="0.1">
+    <circle cx="600" cy="500" r="1" fill="#F2D479" />
+    <circle cx="500" cy="600" r="1" fill="#F2D479" />
+    <circle cx="700" cy="600" r="1" fill="#F2D479" />
+    <circle cx="600" cy="700" r="1" fill="#F2D479" />
+  </g>
+</svg>
