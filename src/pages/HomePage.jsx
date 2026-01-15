@@ -109,6 +109,8 @@ import {
   MagneticHover,
 } from '../components/animations';
 
+import TetWishPopup from '../components/TetWishPopup';
+
 // ==============================================
 // DATA - 100% Vietnamese
 // ==============================================
@@ -189,6 +191,9 @@ const premiumFeatures = [
 export default function HomePage({ onNavigate }) {
   return (
     <div className="min-h-screen relative overflow-hidden">
+      {/* Tet Wish Popup */}
+      <TetWishPopup />
+
       {/* Ambient Background */}
       <div className="fixed inset-0 pointer-events-none">
         <GlowingOrb
